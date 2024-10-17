@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFilho</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #home {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: white;
+            display: block;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4CAF50;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .text-content {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .view-gallery-btn,
+        .view-spreadsheet-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .view-gallery-btn:hover,
+        .view-spreadsheet-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        #gallery,
+        #spreadsheet {
+            display: none;
+        }
+
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+
+        .section {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            scroll-snap-align: start;
+        }
+
+        .image-container {
+            width: 80%;
+            height: 80%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+            animation: bounce 2s infinite;
+            z-index: 100;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Página Inicial -->
+    <div id="home" class="active">
+        <header class="header">
+            <h1>TechFilho</h1>
+        </header>
+        <main class="content">
+            <img src="imagens/Captura_de_tela_2024-10-17_111756-transformed.png" alt="Perfil" 
+                 style="width: 500px; height: 400px; object-fit: cover;">
+            <div class="text-content">
+                <h2>Bem-vindo ao TechFilho</h2>
+                <p>A TechFilho é uma empresa especializada em soluções de redes que atende tanto residências quanto comércios.</p>
+                <a href="#" class="view-gallery-btn" onclick="showGallery(event)">Ver Galeria</a>
+                <a href="#" class="view-spreadsheet-btn" onclick="showSpreadsheet(event)">Ver Planilha</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Galeria -->
+    <div id="gallery">
+        <a href="#" class="back-btn" onclick="showHome(event)">Voltar</a>
+        <div class="container">
+            <div class="section">
+                <div class="image-container">
+                    <img src="/api/placeholder/800/600" alt="Imagem 1" class="image-placeholder">
+                </div>
+            </div>
+            <div class="section">
+                <div class="image-container">
+                    <img src="/api/placeholder/800/600" alt="Imagem 2" class="image-placeholder">
+                </div>
+            </div>
+            <div class="section">
+                <div class="image-container">
+                    <img src="/api/placeholder/800/600" alt="Imagem 3" class="image-placeholder">
+                </div>
+            </div>
+            <div class="section">
+                <div class="image-container">
+                    <img src="/api/placeholder/800/600" alt="Imagem 4" class="image-placeholder">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">⬇ Role para ver mais</div>
+    </div>
+
+    <!-- Planilha -->
+    <div id="spreadsheet">
+        <header class="header">
+            <h1>Planilha de Custos</h1>
+        </header>
+        <main class="content">
+            <iframe id="spreadsheetFrame" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_iz29BhRABe-qwAl0x42n2rHGG8qUtliFgM8L3p2tAHXaZddV6cDAZ_GrEJiFNMtgm1Tg1CxAWpAS/pubhtml?widget=true&amp;headers=false" width="100%" height="600px" style="border: none;"></iframe>
+            <button onclick="refreshSpreadsheet()">Atualizar Planilha</button>
+        </main>
+        <a href="#" class="back-btn" onclick="showHome(event)">Voltar</a>
+    </div>
+
+    <script>
+        function showGallery(e) {
+            e.preventDefault();
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('gallery').style.display = 'block';
+            document.getElementById('spreadsheet').style.display = 'none';
+        }
+
+        function showSpreadsheet(e) {
+            e.preventDefault();
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('spreadsheet').style.display = 'block';
+            document.getElementById('gallery').style.display = 'none';
+        }
+
+        function showHome(e) {
+            e.preventDefault();
+            document.getElementById('gallery').style.display = 'none';
+            document.getElementById('spreadsheet').style.display = 'none';
+            document.getElementById('home').style.display = 'block';
+        }
+
+        function refreshSpreadsheet() {
+            const iframe = document.getElementById('spreadsheetFrame');
+            const currentSrc = iframe.src.split('?')[0];
+            const timestamp = new Date().getTime(); // Adiciona um timestamp para evitar cache
+            iframe.src = `${currentSrc}?t=${timestamp}`;
+        }
+    </script>
+</body>
+</html>
